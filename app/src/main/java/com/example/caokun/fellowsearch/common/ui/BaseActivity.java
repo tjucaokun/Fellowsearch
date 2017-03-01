@@ -13,7 +13,6 @@ import com.example.caokun.fellowsearch.ToastUtils;
 import com.example.caokun.fellowsearch.common.IViewController;
 import com.example.caokun.fellowsearch.common.ui.views.LoadingDialog;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by huangyong on 16/5/18.
@@ -44,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IViewCon
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
-        ButterKnife.inject(this);
+//        ButterKnife.inject(this);
         actionStart(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(getResources().getColor(getStatusbarColor()));
