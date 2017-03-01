@@ -35,7 +35,7 @@
         android:text="查 询"
         android:textColorHint="#95A1AA"
         android:textColor="@color/white"
-        android:background="@drawable/btn_shape"
+        android:background="@drawable/fellow_btn_shape"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="40dp"
@@ -61,7 +61,7 @@
         android:layout_below="@+id/fellow_icon"
         android:layout_alignParentStart="true">
     <ImageView
-        android:src="@drawable/province"
+        android:src="@drawable/fellow_province"
         android:id="@+id/provinceView"
         android:layout_alignTop="@+id/textprovince"
         android:layout_alignLeft="@+id/textprovince"
@@ -69,7 +69,7 @@
         android:layout_marginLeft="2dp"
         android:layout_height="30dp" />
     <ImageView
-        android:src="@drawable/institute"
+        android:src="@drawable/fellow_institute"
         android:id="@+id/instituteView"
         android:layout_alignTop="@+id/textInstitute"
         android:layout_alignLeft="@+id/textInstitute"
@@ -79,7 +79,7 @@
         android:layout_marginLeft="2dp"
         android:layout_below="@+id/textprovince"/>
     <ImageView
-        android:src="@drawable/major"
+        android:src="@drawable/fellow_major"
         android:id="@+id/majorView"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -88,7 +88,7 @@
         android:layout_marginRight="10dp"
         android:layout_below="@+id/textInstitute" />
     <ImageView
-        android:src="@drawable/senior"
+        android:src="@drawable/fellow_senior"
         android:id="@+id/seniorView"
         android:layout_width="30dp"
         android:layout_height="30dp"

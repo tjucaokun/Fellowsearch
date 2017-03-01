@@ -44,18 +44,12 @@ import de.greenrobot.event.EventBus;
  */
 
 public class FellowFindActivity extends PActivity<FellowPresenter> implements FellowController {
-    @InjectView(R.id.toolbar)
     Toolbar mToolbar;
-    @InjectView(R.id.re_view)
     RecyclerView mRecyclerView;
-    @InjectView(R.id.fellownum)
     TextView fellownum;
     Fellowadapter fellowadapter;
-    @InjectView(R.id.error)
             TextView error;
-    @InjectView(R.id.go_main)
     Button go_main;
-    @InjectView(R.id.notfound)
     RelativeLayout relativeLayout;
     String province,institute,major,senior;
     @Override
@@ -64,6 +58,13 @@ public class FellowFindActivity extends PActivity<FellowPresenter> implements Fe
     }
     @Override
     protected void actionStart(Context context){
+        mToolbar=(Toolbar)findViewById(R.id.toolbar);
+        mRecyclerView=(RecyclerView)findViewById(R.id.re_view);
+        fellownum=(TextView)findViewById(R.id.fellownum);
+        error=(TextView)findViewById(R.id.error);
+        go_main=(Button)findViewById(R.id.go_main);
+        relativeLayout=(RelativeLayout)findViewById(R.id.notfound);
+
     }
     @Override
     protected int getStatusbarColor() {

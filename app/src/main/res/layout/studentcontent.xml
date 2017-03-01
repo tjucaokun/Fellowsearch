@@ -25,7 +25,7 @@
         android:paddingBottom="10dp">
         <ImageView
             android:id="@+id/image_pic"
-            android:src="@drawable/assistor"
+            android:src="@drawable/fellowsearch_assistor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/name"

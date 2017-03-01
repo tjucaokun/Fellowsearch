@@ -89,10 +89,10 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
     @Override
     protected void preInitView(){
         fellow_icon.setImageResource(R.drawable.fellow_icon);
-         provinceview.setImageResource(R.drawable.province);
-        instituteview.setImageResource(R.drawable.institute);
-        majorview.setImageResource(R.drawable.major);
-        seniorview.setImageResource(R.drawable.senior);
+         provinceview.setImageResource(R.drawable.fellow_province);
+        instituteview.setImageResource(R.drawable.fellow_institute);
+        majorview.setImageResource(R.drawable.fellow_major);
+        seniorview.setImageResource(R.drawable.fellow_senior);
     }
 
     @Override
