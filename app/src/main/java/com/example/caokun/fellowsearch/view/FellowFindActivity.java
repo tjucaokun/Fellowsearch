@@ -35,10 +35,6 @@ import com.example.caokun.fellowsearch.presenter.FellowPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import de.greenrobot.event.EventBus;
-
 /**
  * Created by caokun on 2017/2/21.
  */

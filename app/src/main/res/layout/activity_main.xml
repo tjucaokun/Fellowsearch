@@ -9,8 +9,8 @@
     android:gravity="center_horizontal">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/bar"
-        android:paddingTop="50px"
-        android:layout_height="200px"
+        android:paddingTop="0px"
+        android:layout_height="150px"
         android:layout_width="match_parent"
         android:layout_centerHorizontal="true"
         >

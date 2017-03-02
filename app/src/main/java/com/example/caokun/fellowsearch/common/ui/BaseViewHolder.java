@@ -3,7 +3,6 @@ package com.example.caokun.fellowsearch.common.ui;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by sunjuntao on 16/6/6.
@@ -11,6 +10,6 @@ import butterknife.ButterKnife;
 public class BaseViewHolder extends RecyclerView.ViewHolder {
     public BaseViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.inject(this, itemView);
+//        ButterKnife.inject(this, itemView);
     }
 }

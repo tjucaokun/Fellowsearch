@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.example.caokun.fellowsearch.ToastUtils;
 import com.example.caokun.fellowsearch.common.IViewController;
 
-import butterknife.ButterKnife;
 
 
 /**
@@ -35,7 +34,7 @@ public abstract class BaseFragment extends Fragment implements IViewController {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
-        ButterKnife.inject(this, view);
+//        ButterKnife.inject(this, view);
         preInitView();
         initView();
         afterInitView();
@@ -45,7 +44,7 @@ public abstract class BaseFragment extends Fragment implements IViewController {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ButterKnife.reset(this);
+//        ButterKnife.reset(this);
     }
 
     @Override

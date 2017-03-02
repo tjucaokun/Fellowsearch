@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -31,34 +32,19 @@ import com.example.caokun.fellowsearch.presenter.FellowPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class MainActivity extends PActivity<FellowPresenter> implements FellowfindController{
-    @InjectView(R.id.textprovince)
     AutoCompleteTextView editProvince;
-    @InjectView(R.id.textInstitute)
     AutoCompleteTextView editInstitute;
-    @InjectView(R.id.textMajor)
     AutoCompleteTextView editMajor;
-    @InjectView(R.id.textSenior)
     AutoCompleteTextView editSenior;
-
-    @InjectView(R.id.main_toolbar)
     Toolbar mToolbar;
-    @InjectView(R.id.finder)
     Button button;
-    @InjectView(R.id.fellow_icon)
     ImageView fellow_icon;
-    @InjectView(R.id.provinceView)
     ImageView provinceview;
-    @InjectView(R.id.instituteView)
             ImageView instituteview;
-    @InjectView(R.id.majorView)
             ImageView majorview;
-    @InjectView(R.id.seniorView)
             ImageView seniorview;
-
     String  user_province;
     String user_institute;
     String  user_major;
@@ -73,6 +59,17 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
     }
     @Override
     protected void actionStart(Context context){
+        editProvince=(AutoCompleteTextView)findViewById(R.id.textprovince);
+        editInstitute=(AutoCompleteTextView)findViewById(R.id.textInstitute);
+        editMajor=(AutoCompleteTextView)findViewById(R.id.textMajor);
+        editSenior=(AutoCompleteTextView)findViewById(R.id.textSenior);
+        mToolbar=(Toolbar)findViewById(R.id.main_toolbar);
+        button=(Button)findViewById(R.id.finder);
+        fellow_icon=(ImageView)findViewById(R.id.fellow_icon);
+        provinceview=(ImageView)findViewById(R.id.provinceView);
+        instituteview=(ImageView)findViewById(R.id.instituteView);
+        majorview=(ImageView)findViewById(R.id.majorView);
+        seniorview=(ImageView)findViewById(R.id.seniorView);
     }
     @Override
     protected int getStatusbarColor() {
@@ -111,7 +108,7 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         editInstitute.addTextChangedListener(institutewatcher);
         editMajor.addTextChangedListener(majorwatcher);
         editSenior.addTextChangedListener(seniorwatcher);
-        setautoadapter();
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,16 +123,12 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         });
 
     }
-    public void setautoadapter(){
-        ArrayAdapter<String> provinceadapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,provinces);
-        editProvince.setAdapter(provinceadapter);
-        ArrayAdapter<String> senioeradapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,seniors);
-        editSenior.setAdapter(senioeradapter);
-        ArrayAdapter<String> instituteadapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,institutes);
-        editInstitute.setAdapter(instituteadapter);
-        ArrayAdapter<String> majoradapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,majors);
-        editMajor.setAdapter(majoradapter);
-    }
+//    public void setautoadapter(){
+//
+//
+//
+//
+//    }
 
     public  void onActionStart(Context context){
     }
@@ -156,7 +149,17 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
 
         @Override
         public void afterTextChanged(Editable editable) {
+//            editProvince.clearFocus();//取消焦点
+//            ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+//                    .hideSoftInputFromWindow(
+//                                    .getCurrentFocus().getWindowToken(),
+//                            InputMethodManager.HIDE_NOT_ALWAYS);//关闭输入法
+            //隐藏键盘 没写好。。。
                    user_province=editable.toString();
+            if (user_province.contains("\n")) {
+                user_province = user_province.replaceAll("\n", "");
+                editProvince.setText(user_province);
+            }
             seniors.clear();
             institutes.clear();
             mPresenter.getSenior(user_province);
@@ -177,9 +180,12 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         @Override
         public void afterTextChanged(Editable editable) {
             user_institute=editable.toString();
-            majors.clear();
+            if (user_institute.contains("\n")) {
+                user_institute = user_institute.replaceAll("\n", "");
+                editInstitute.setText(user_institute);
+            }
+//            majors.clear();
             mPresenter.getMajor(user_province,user_institute);
-
         }
     };
     private TextWatcher majorwatcher=new TextWatcher() {
@@ -196,6 +202,10 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         @Override
         public void afterTextChanged(Editable editable) {
             user_major=editable.toString();
+            if (user_major.contains("\n")) {
+                user_major = user_major.replaceAll("\n", "");
+                editMajor.setText(user_major);
+            }
 
         }
     }; private TextWatcher seniorwatcher=new TextWatcher() {
@@ -212,6 +222,10 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         @Override
         public void afterTextChanged(Editable editable) {
             user_senior=editable.toString();
+            if (user_senior.contains("\n")) {
+                user_senior = user_senior.replaceAll("\n", "");
+                editSenior.setText(user_senior);
+            }
 
         }
     };
@@ -220,6 +234,8 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         for(int i=0;i<provinces.size();i++) {
             this.provinces.add(provinces.get(i).provincename);
         }
+        ArrayAdapter<String> provinceadapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,this.provinces);
+        editProvince.setAdapter(provinceadapter);
     }
 
     @Override
@@ -227,6 +243,8 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         for(int i=0;i<majors.size();i++) {
             this.majors.add(majors.get(i).majorname);
         }
+        ArrayAdapter<String> majoradapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,this.majors);
+        editMajor.setAdapter(majoradapter);
     }
 
     @Override
@@ -234,6 +252,9 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         for(int i=0;i<institutes.size();i++) {
             this.institutes.add(institutes.get(i).collegename);
         }
+        ArrayAdapter<String> instituteadapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,this.institutes);
+        editInstitute.setAdapter(instituteadapter);
+
     }
 
     @Override
@@ -241,6 +262,8 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         for(int i=0;i<seniors.size();i++) {
              this.seniors.add(seniors.get(i).seniorhigh);
         }
+        ArrayAdapter<String> senioeradapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,this.seniors);
+        editSenior.setAdapter(senioeradapter);
     }
 
 }
