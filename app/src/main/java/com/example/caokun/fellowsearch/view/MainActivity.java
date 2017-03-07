@@ -16,6 +16,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.caokun.fellowsearch.R;
 import com.example.caokun.fellowsearch.common.Presenter;
@@ -45,7 +46,7 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
             ImageView instituteview;
             ImageView majorview;
             ImageView seniorview;
-    String  user_province;
+    String  user_province=null;
     String user_institute;
     String  user_major;
     String  user_senior;
@@ -169,6 +170,9 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
     private TextWatcher institutewatcher=new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if(user_province==null){
+                Toast.makeText(MainActivity.this,"请优先输入省份",Toast.LENGTH_LONG).show();
+            }
 
         }
 
@@ -184,14 +188,16 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
                 user_institute = user_institute.replaceAll("\n", "");
                 editInstitute.setText(user_institute);
             }
-//            majors.clear();
+            majors.clear();
             mPresenter.getMajor(user_province,user_institute);
         }
     };
     private TextWatcher majorwatcher=new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            if(user_province==null){
+                Toast.makeText(MainActivity.this,"请优先输入省份",Toast.LENGTH_LONG).show();
+            }
         }
 
         @Override
@@ -211,7 +217,9 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
     }; private TextWatcher seniorwatcher=new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            if(user_province==null){
+                Toast.makeText(MainActivity.this,"请优先输入省份",Toast.LENGTH_LONG).show();
+            }
         }
 
         @Override

@@ -1,7 +1,10 @@
 package com.example.caokun.fellowsearch.presenter;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.example.caokun.fellowsearch.api.ApiException;
+import com.example.caokun.fellowsearch.api.OnErrorListener;
 import com.example.caokun.fellowsearch.api.OnNextListener;
 import com.example.caokun.fellowsearch.common.Presenter;
 import com.example.caokun.fellowsearch.model.FellowApiClient;
@@ -14,7 +17,11 @@ import com.example.caokun.fellowsearch.model.Province;
 import com.example.caokun.fellowsearch.model.Senior;
 import com.example.caokun.fellowsearch.model.Student;
 
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.util.List;
+
+import retrofit2.adapter.rxjava.HttpException;
 
 /**
  * Created by caokun on 2017/2/21.
@@ -80,4 +87,22 @@ public class FellowPresenter extends Presenter {
             fellowfindController.bindAllSenior(seniors);
         }
     };
+//
+//    private OnErrorListener onErrorListener=new OnErrorListener() {
+//        @Override
+//        public void onError(Throwable e) {
+//            if (e instanceof ConnectException) {
+//                Toast.makeText(mContext,"网络中断，请检查您的网络状态",Toast.LENGTH_SHORT);
+//            } else if (e instanceof SocketTimeoutException) {
+//                Toast.makeText(mContext,"网络连接超时",Toast.LENGTH_SHORT);
+//            } else if (e instanceof HttpException){
+//                Toast.makeText(mContext,"Http错误"+((HttpException) e).code(),Toast.LENGTH_SHORT);
+//            }
+//            else if (e instanceof ApiException){
+//                Toast.makeText(mContext,"错误: " + e.getMessage(),Toast.LENGTH_SHORT);
+//            }else if(e instanceof NullPointerException){
+//                Toast.makeText(mContext,"对不起，没有数据",Toast.LENGTH_SHORT);
+//            }
+//        }
+//    };
 }
