@@ -195,7 +195,7 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
     private TextWatcher majorwatcher=new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if(user_province==null){
+            if(user_province==null||user_province.isEmpty()){
                 Toast.makeText(MainActivity.this,"请优先输入省份",Toast.LENGTH_LONG).show();
             }
         }
