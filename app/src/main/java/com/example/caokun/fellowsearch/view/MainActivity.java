@@ -2,6 +2,8 @@ package com.example.caokun.fellowsearch.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -113,6 +115,12 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(isNetworkAvailable(MainActivity.this)){
+
+                }
+                else{
+                    Toast.makeText(MainActivity.this,"请检查您的网络连接",Toast.LENGTH_SHORT).show();
+                }
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this,FellowFindActivity.class);
                 intent.putExtra("province",user_province);
@@ -165,6 +173,13 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
             institutes.clear();
             mPresenter.getSenior(user_province);
             mPresenter.getInstitute(user_province);
+            if(isNetworkAvailable(MainActivity.this)){
+
+            }
+            else{
+                Toast.makeText(MainActivity.this,"请检查您的网络连接",Toast.LENGTH_SHORT).show();
+            }
+
         }
     };
     private TextWatcher institutewatcher=new TextWatcher() {
@@ -272,6 +287,23 @@ public class MainActivity extends PActivity<FellowPresenter> implements Fellowfi
         }
         ArrayAdapter<String> senioeradapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,this.seniors);
         editSenior.setAdapter(senioeradapter);
+    }
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivity = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+            NetworkInfo info = connectivity.getActiveNetworkInfo();
+            if (info != null && info.isConnected())
+            {
+                // 当前网络是连接的
+                if (info.getState() == NetworkInfo.State.CONNECTED)
+                {
+                    // 当前所连接的网络可用
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
